@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Дашборд декана ФБИ</title>
+  <link rel="stylesheet" href="dean_dashboard.css" />
+</head>
+<body>
+<div class="layout">
+
+  <header>
+    <div>
+      <div class="title">Информационная система ФБИ</div>
+      <div class="role">Дашборд декана факультета бизнес‑информатики</div>
+    </div>
+    <div class="filters">
+      <label>
+        Год
+        <select>
+          <option>2024 / 2025</option>
+          <option selected>2025 / 2026</option>
+          <option>2026 / 2027</option>
+        </select>
+      </label>
+      <label>
+        Семестр
+        <select>
+          <option>Осенний</option>
+          <option selected>Весенний</option>
+        </select>
+      </label>
+      <label>
+        Направление
+        <select>
+          <option selected>Все направления</option>
+          <option>БИСТ — Инф. системы и технологии</option>
+          <option>БПИ — Прикладная информатика</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="section-title">Сводка по факультету</div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <kpi-label>Студентов всего</kpi-label>
+          <div class="kpi-value">842</div>
+          <div class="kpi-sub">+38 к прошлому году</div>
+          <div class="kpi-trend positive">▲ +4.7%</div>
+        </div>
+
+        <div class="card">
+          <kpi-label>Средний балл (факультет)</kpi-label>
+          <div class="kpi-value">4.12</div>
+          <div class="kpi-sub">Цель ≥ 4.0</div>
+          <div class="kpi-trend positive">▲ +0.06 за год</div>
+        </div>
+
+        <div class="card">
+          <kpi-label>Без задолженностей</kpi-label>
+          <div class="kpi-value">87%</div>
+          <div class="kpi-sub">Цель ≥ 85%</div>
+          <div class="kpi-trend positive">▲ +3.2 п.п.</div>
+        </div>
+
+        <div class="card">
+          <kpi-label>Отчислений за год</kpi-label>
+          <div class="kpi-value">3.8%</div>
+          <div class="kpi-sub">Цель ≤ 5%</div>
+          <div class="kpi-trend positive">▼ −0.9 п.п.</div>
+        </div>
+      </div>
+
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Цели декана (KPI)</div>
+            <div class="panel-subtitle">Исполнение стратегических показателей факультета</div>
+          </div>
+          <span class="badge green">Исполнение 2 из 3 целей</span>
+        </div>
+        <div class="kpi-goals">
+          <div class="kpi-goal">
+            <div class="goal-name">Средний балл по факультету</div>
+            <div class="goal-values">
+              <span>Факт: <strong>4.12</strong></span>
+              <span>Цель: 4.0</span>
+            </div>
+            <div class="goal-progress-bar">
+              <div class="goal-progress-bar-inner"></div>
+            </div>
+            <div class="kpi-trend positive">Цель выполняется</div>
+          </div>
+          <div class="kpi-goal">
+            <div class="goal-name">Доля студентов без задолженностей</div>
+            <div class="goal-values">
+              <span>Факт: <strong>87%</strong></span>
+              <span>Цель: 85%</span>
+            </div>
+            <div class="goal-progress-bar">
+              <div class="goal-progress-bar-inner" style="width: 89%;"></div>
+            </div>
+            <div class="kpi-trend positive">Цель выполняется</div>
+          </div>
+          <div class="kpi-goal">
+            <div class="goal-name">Уровень отчислений</div>
+            <div class="goal-values">
+              <span>Факт: <strong>3.8%</strong></span>
+              <span>Цель: ≤ 3%</span>
+            </div>
+            <div class="goal-progress-bar">
+              <div class="goal-progress-bar-inner" style="width: 72%; background: linear-gradient(90deg,#f97316,#ea580c);"></div>
+            </div>
+            <div class="kpi-trend yellow">Нужно внимание</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Направления подготовки (БИСТ, БПИ)</div>
+            <div class="panel-subtitle">Сравнение по ключевым показателям</div>
+          </div>
+        </div>
+
+        <div class="two-columns">
+          <div>
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Направление</th>
+                <th>Студентов</th>
+                <th>Средний балл</th>
+                <th>Без долгов</th>
+                <th>Отчислений</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>БИСТ</td>
+                <td>396</td>
+                <td>4.18</td>
+                <td><span class="status-pill ok">89%</span></td>
+                <td>3.1%</td>
+              </tr>
+              <tr>
+                <td>БПИ</td>
+                <td>446</td>
+                <td>4.07</td>
+                <td><span class="status-pill risk">84%</span></td>
+                <td>4.4%</td>
+              </tr>
+              <tr>
+                <td>Другие</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+                <td>–</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="panel-subtitle">Динамика среднего балла по семестрам</div>
+            <div class="chart-placeholder">
+              Здесь будет график (линейный график по семестрам для БИСТ и БПИ)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">ТОП‑5 проблемных групп</div>
+            <div class="panel-subtitle">Низкий средний балл или высокий уровень задолженностей</div>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Группа</th>
+            <th>Направление</th>
+            <th>Курс</th>
+            <th>Средний балл</th>
+            <th>Задолженности</th>
+            <th>Статус</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>БПИ‑201</td>
+            <td>БПИ</td>
+            <td>2</td>
+            <td>3.46</td>
+            <td>23%</td>
+            <td><span class="status-pill risk">Критично</span></td>
+          </tr>
+          <tr>
+            <td>БИСТ‑301</td>
+            <td>БИСТ</td>
+            <td>3</td>
+            <td>3.58</td>
+            <td>19%</td>
+            <td><span class="status-pill risk">Риск</span></td>
+          </tr>
+          <tr>
+            <td>БПИ‑401</td>
+            <td>БПИ</td>
+            <td>4</td>
+            <td>3.62</td>
+            <td>17%</td>
+            <td><span class="status-pill risk">Риск</span></td>
+          </tr>
+          <tr>
+            <td>БИСТ‑102</td>
+            <td>БИСТ</td>
+            <td>1</td>
+            <td>3.71</td>
+            <td>15%</td>
+            <td><span class="status-pill">Под наблюдением</span></td>
+          </tr>
+          <tr>
+            <td>БПИ‑103</td>
+            <td>БПИ</td>
+            <td>1</td>
+            <td>3.75</td>
+            <td>14%</td>
+            <td><span class="status-pill">Под наблюдением</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="right-column">
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Сигналы и риски</div>
+            <div class="panel-subtitle">Автоматические уведомления по ключевым событиям</div>
+          </div>
+        </div>
+        <ul class="alerts-list">
+          <li>
+            <div class="alert-text">
+              Высокая доля двоек по дисциплине «Базы данных» в группе БПИ‑201 (31% пересдач).
+            </div>
+            <span class="badge red">Высокий риск</span>
+          </li>
+          <li>
+            <div class="alert-text">
+              Рост отчислений по направлению БПИ на 1.3 п.п. за последний год.
+            </div>
+            <span class="badge yellow">Нужно внимание</span>
+          </li>
+          <li>
+            <div class="alert-text">
+              Успеваемость по направлению БИСТ стабильно выше целевого значения.
+            </div>
+            <span class="badge green">Положительная динамика</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Контингент и движение</div>
+            <div class="panel-subtitle">Зачисления, отчисления, академические отпуска</div>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+          <tr>
+            <th></th>
+            <th>Всего</th>
+            <th>БИСТ</th>
+            <th>БПИ</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Зачислено</td>
+            <td>228</td>
+            <td>112</td>
+            <td>116</td>
+          </tr>
+          <tr>
+            <td>Отчислено</td>
+            <td>32</td>
+            <td>12</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>Академ. отпуск</td>
+            <td>19</td>
+            <td>8</td>
+            <td>11</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Быстрый доступ</div>
+          </div>
+        </div>
+        <ul class="alerts-list">
+          <li>
+            <div class="alert-text">
+              Отчёт по успеваемости групп (таблица + экспорт в Excel)
+            </div>
+            <span class="tag">Группы</span>
+          </li>
+          <li>
+            <div class="alert-text">
+              Сводка по направлениям (БИСТ, БПИ) с детализацией до студента
+            </div>
+            <span class="tag">Направления</span>
+          </li>
+          <li>
+            <div class="alert-text">
+              Список студентов с риском отчисления (много задолженностей)
+            </div>
+            <span class="tag">Риск‑студенты</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Факультет бизнес‑информатики · Черновой макет дашборда декана (демо‑данные)
+  </footer>
+
+</div>
+</body>
+</html>
+
