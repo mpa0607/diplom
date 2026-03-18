@@ -662,3 +662,153 @@ footer {
   border-top: 1px solid #e5e7eb;
 }
 
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.students-filters {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.students-filters__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.students-filters__field select {
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+}
+
+.students-filters__hint {
+  color: #6b7280;
+}
+
+@media (max-width: 1024px) {
+  header {
+    padding: 10px 16px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .filters {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  main {
+    grid-template-columns: 1.5fr 1fr;
+    padding: 20px 16px 24px;
+    gap: 16px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kpi-goals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .two-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 8px 12px;
+  }
+
+  header .title {
+    font-size: 16px;
+  }
+
+  header .role {
+    font-size: 12px;
+  }
+
+  .quick-access {
+    margin-left: 0;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+    padding: 16px 12px 20px;
+  }
+
+  .right-column {
+    order: 2;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kpi-goals {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 12px 12px;
+  }
+
+  .table th,
+  .table td {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+
+  footer {
+    padding: 8px 12px 12px;
+  }
+
+  .students-page main {
+    padding: 16px 12px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-value {
+    font-size: 18px;
+  }
+
+  .calendar-grid {
+    gap: 2px;
+  }
+
+  .calendar-day {
+    min-height: 28px;
+  }
+
+  .students-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

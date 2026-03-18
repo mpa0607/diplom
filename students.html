@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Студенты факультета — Дашборд декана ФБИ</title>
   <link rel="stylesheet" href="dean_dashboard.css" />
 </head>
@@ -29,20 +30,20 @@
           </div>
         </div>
 
-        <div style="margin-bottom: 10px; display: flex; gap: 12px; align-items: center; font-size: 12px;">
-          <label style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="students-filters">
+          <label class="students-filters__field">
             Год набора
-            <select id="year-intake-filter" style="padding: 4px 8px; border-radius: 999px; border: 1px solid #cbd5e1;">
+            <select id="year-intake-filter">
               <option value="all" selected>Все годы</option>
               <option value="2022">2022</option>
               <option value="2023">2023</option>
               <option value="2024">2024</option>
             </select>
           </label>
-          <span style="color:#6b7280;">Нажмите на заголовок столбца для сортировки.</span>
+          <span class="students-filters__hint">Нажмите на заголовок столбца для сортировки.</span>
         </div>
 
-        <div style="overflow-x:auto;">
+        <div class="table-wrapper">
           <table class="table" id="students-table">
             <thead>
             <tr>
