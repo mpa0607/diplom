@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Студенты факультета — Дашборд декана ФБИ</title>
+  <link rel="stylesheet" href="dean_dashboard.css" />
+</head>
+<body class="students-page">
+<div class="layout">
+
+  <header>
+    <div>
+      <div class="title">Информационная система ФБИ</div>
+      <div class="role">Список студентов факультета</div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="section-title">Детализация до уровня студента</div>
+
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Список студентов</div>
+            <div class="panel-subtitle">
+              Полный перечень студентов факультета с ключевыми показателями для анализа деканом
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 10px; display: flex; gap: 12px; align-items: center; font-size: 12px;">
+          <label style="display: flex; flex-direction: column; gap: 4px;">
+            Год набора
+            <select id="year-intake-filter" style="padding: 4px 8px; border-radius: 999px; border: 1px solid #cbd5e1;">
+              <option value="all" selected>Все годы</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+            </select>
+          </label>
+          <span style="color:#6b7280;">Нажмите на заголовок столбца для сортировки.</span>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="table" id="students-table">
+            <thead>
+            <tr>
+              <th data-sort-key="id">ID</th>
+              <th data-sort-key="fio">ФИО</th>
+              <th data-sort-key="record">Зачётная книжка</th>
+              <th data-sort-key="group">Группа</th>
+              <th data-sort-key="direction">Направление</th>
+              <th data-sort-key="course">Курс</th>
+              <th data-sort-key="year">Год набора</th>
+              <th data-sort-key="avg">Средний балл</th>
+              <th data-sort-key="debts">Задолженности</th>
+              <th data-sort-key="risk">Статус риска</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Данные условные, демонстрационные -->
+            <tr data-year="2022">
+              <td data-id="1001">1001</td>
+              <td data-fio="Иванов Иван Иванович">Иванов Иван Иванович</td>
+              <td data-record="АБ-123456">АБ-123456</td>
+              <td data-group="БПИ‑201">БПИ‑201</td>
+              <td data-direction="БПИ">БПИ</td>
+              <td data-course="2">2</td>
+              <td data-year="2022">2022</td>
+              <td data-avg="3.46">3.46</td>
+              <td data-debts="3">3</td>
+              <td data-risk="3">
+                <span class="status-pill risk">Высокий риск</span>
+              </td>
+            </tr>
+            <tr data-year="2021">
+              <td data-id="1002">1002</td>
+              <td data-fio="Петрова Анна Сергеевна">Петрова Анна Сергеевна</td>
+              <td data-record="АБ-123457">АБ-123457</td>
+              <td data-group="БИСТ‑301">БИСТ‑301</td>
+              <td data-direction="БИСТ">БИСТ</td>
+              <td data-course="3">3</td>
+              <td data-year="2021">2021</td>
+              <td data-avg="3.82">3.82</td>
+              <td data-debts="1">1</td>
+              <td data-risk="2">
+                <span class="status-pill risk">Риск</span>
+              </td>
+            </tr>
+            <tr data-year="2020">
+              <td data-id="1003">1003</td>
+              <td data-fio="Сидоров Дмитрий Олегович">Сидоров Дмитрий Олегович</td>
+              <td data-record="АБ-123458">АБ-123458</td>
+              <td data-group="БПИ‑401">БПИ‑401</td>
+              <td data-direction="БПИ">БПИ</td>
+              <td data-course="4">4</td>
+              <td data-year="2020">2020</td>
+              <td data-avg="3.62">3.62</td>
+              <td data-debts="2">2</td>
+              <td data-risk="2">
+                <span class="status-pill risk">Риск</span>
+              </td>
+            </tr>
+            <tr data-year="2023">
+              <td data-id="1004">1004</td>
+              <td data-fio="Кузнецова Мария Игоревна">Кузнецова Мария Игоревна</td>
+              <td data-record="АБ-123459">АБ-123459</td>
+              <td data-group="БИСТ‑102">БИСТ‑102</td>
+              <td data-direction="БИСТ">БИСТ</td>
+              <td data-course="1">1</td>
+              <td data-year="2023">2023</td>
+              <td data-avg="4.21">4.21</td>
+              <td data-debts="0">0</td>
+              <td data-risk="1">
+                <span class="status-pill ok">Низкий риск</span>
+              </td>
+            </tr>
+            <tr data-year="2023">
+              <td data-id="1005">1005</td>
+              <td data-fio="Алексеев Роман Петрович">Алексеев Роман Петрович</td>
+              <td data-record="АБ-123460">АБ-123460</td>
+              <td data-group="БПИ‑103">БПИ‑103</td>
+              <td data-direction="БПИ">БПИ</td>
+              <td data-course="1">1</td>
+              <td data-year="2023">2023</td>
+              <td data-avg="3.75">3.75</td>
+              <td data-debts="1">1</td>
+              <td data-risk="2">
+                <span class="status-pill">Под наблюдением</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Факультет бизнес‑информатики · Список студентов (демо‑данные)
+  </footer>
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var studentsTable = document.getElementById("students-table");
+    if (!studentsTable) return;
+
+    var tbody = studentsTable.querySelector("tbody");
+    var headers = studentsTable.querySelectorAll("th[data-sort-key]");
+    var yearFilter = document.getElementById("year-intake-filter");
+
+    var currentSort = {
+      key: null,
+      direction: "asc"
+    };
+
+    function parseCellValue(cell, key) {
+      if (!cell) return "";
+      var raw = cell.getAttribute("data-" + key) || cell.textContent.trim();
+      if (["id", "course", "year", "debts", "risk"].includes(key)) {
+        var num = parseFloat(raw.replace(",", "."));
+        return isNaN(num) ? 0 : num;
+      }
+      if (["avg"].includes(key)) {
+        var avg = parseFloat(raw.replace(",", "."));
+        return isNaN(avg) ? 0 : avg;
+      }
+      return raw.toLowerCase();
+    }
+
+    function sortByKey(key) {
+      var rows = Array.prototype.slice.call(tbody.querySelectorAll("tr"));
+
+      if (currentSort.key === key) {
+        currentSort.direction = currentSort.direction === "asc" ? "desc" : "asc";
+      } else {
+        currentSort.key = key;
+        currentSort.direction = "asc";
+      }
+
+      rows.sort(function (a, b) {
+        var aCell = a.querySelector("[data-" + key + "]");
+        var bCell = b.querySelector("[data-" + key + "]");
+
+        var aValue = parseCellValue(aCell, key);
+        var bValue = parseCellValue(bCell, key);
+
+        if (aValue < bValue) return currentSort.direction === "asc" ? -1 : 1;
+        if (aValue > bValue) return currentSort.direction === "asc" ? 1 : -1;
+        return 0;
+      });
+
+      rows.forEach(function (row) {
+        tbody.appendChild(row);
+      });
+    }
+
+    headers.forEach(function (th) {
+      th.style.cursor = "pointer";
+      th.addEventListener("click", function () {
+        var key = th.getAttribute("data-sort-key");
+        if (key) {
+          sortByKey(key);
+        }
+      });
+    });
+
+    if (yearFilter) {
+      yearFilter.addEventListener("change", function () {
+        var value = yearFilter.value;
+        var rows = tbody.querySelectorAll("tr");
+        rows.forEach(function (row) {
+          var rowYear = row.getAttribute("data-year");
+          if (value === "all" || rowYear === value) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
+        });
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
+

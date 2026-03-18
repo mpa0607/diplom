@@ -67,6 +67,12 @@ main {
   margin: 0 auto;
 }
 
+.students-page main {
+  max-width: none;
+  margin: 0;
+  display: block;
+}
+
 .section-title {
   font-size: 14px;
   font-weight: 600;
@@ -99,6 +105,18 @@ kpi-label {
   letter-spacing: 0.07em;
   color: rgba(191, 219, 254, 0.9);
   margin-bottom: 4px;
+}
+
+.kpi-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.kpi-link:hover {
+  color: #bfdbfe;
 }
 
 .card .kpi-value {
