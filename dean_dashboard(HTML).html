@@ -127,44 +127,55 @@
           </div>
         </div>
 
-        <div class="two-columns">
-          <div>
-            <table class="table">
-              <thead>
-              <tr>
-                <th>Направление</th>
-                <th>Студентов</th>
-                <th>Средний балл</th>
-                <th>Без долгов</th>
-                <th>Отчислений</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>БИСТ</td>
-                <td>396</td>
-                <td>4.18</td>
-                <td><span class="status-pill ok">89%</span></td>
-                <td>3.1%</td>
-              </tr>
-              <tr>
-                <td>БПИ</td>
-                <td>446</td>
-                <td>4.07</td>
-                <td><span class="status-pill risk">84%</span></td>
-                <td>4.4%</td>
-              </tr>
-              <tr>
-                <td>Другие</td>
-                <td>–</td>
-                <td>–</td>
-                <td>–</td>
-                <td>–</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <div>
+        <div>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Направление</th>
+              <th>Студентов</th>
+              <th>Средний балл</th>
+              <th>Без долгов</th>
+              <th>Отчислений</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>БИСТ</td>
+              <td>396</td>
+              <td>4.18</td>
+              <td><span class="status-pill ok">89%</span></td>
+              <td>3.1%</td>
+            </tr>
+            <tr>
+              <td>БПИ</td>
+              <td>446</td>
+              <td>4.07</td>
+              <td><span class="status-pill risk">84%</span></td>
+              <td>4.4%</td>
+            </tr>
+            <tr>
+              <td>Другие</td>
+              <td>–</td>
+              <td>–</td>
+              <td>–</td>
+              <td>–</td>
+            </tr>
+            </tbody>
+          </table>
+
+          <button
+            type="button"
+            class="link-toggle"
+            data-toggle-target="directions-chart"
+          >
+            Показать динамику в виде графика
+          </button>
+
+          <div
+            id="directions-chart"
+            class="collapsible"
+            aria-hidden="true"
+          >
             <div class="panel-subtitle">Динамика среднего балла по семестрам</div>
             <div class="chart-placeholder">
               Здесь будет график (линейный график по семестрам для БИСТ и БПИ)
@@ -341,6 +352,36 @@
   </footer>
 
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var toggles = document.querySelectorAll(".link-toggle[data-toggle-target]");
+    toggles.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var targetId = btn.getAttribute("data-toggle-target");
+        var panel = document.getElementById(targetId);
+        if (!panel) return;
+
+        var isOpen = panel.classList.contains("collapsible-open");
+        if (isOpen) {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+          requestAnimationFrame(function () {
+            panel.classList.remove("collapsible-open");
+            panel.style.maxHeight = "0px";
+            panel.setAttribute("aria-hidden", "true");
+            btn.textContent = "Показать динамику в виде графика";
+          });
+        } else {
+          panel.classList.add("collapsible-open");
+          panel.style.maxHeight = panel.scrollHeight + "px";
+          panel.setAttribute("aria-hidden", "false");
+          btn.textContent = "Скрыть динамику";
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
 

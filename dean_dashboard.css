@@ -279,6 +279,22 @@ kpi-label {
   gap: 14px;
 }
 
+.link-toggle {
+  margin-bottom: 8px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #1d4ed8;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.link-toggle:hover {
+  color: #1e40af;
+}
+
 .chart-placeholder {
   margin-top: 6px;
   height: 160px;
@@ -290,6 +306,16 @@ kpi-label {
   justify-content: center;
   color: #9ca3af;
   font-size: 12px;
+}
+
+.collapsible {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease;
+}
+
+.collapsible-open {
+  /* max-height управляется скриптом, здесь только флаг-состояние */
 }
 
 .right-column {
