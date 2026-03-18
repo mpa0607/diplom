@@ -485,7 +485,7 @@ kpi-label {
 }
 
 .calendar-mark {
-  align-self: center;
+  align-self: flex-end;
 }
 
 .calendar-day-session {
@@ -544,6 +544,8 @@ kpi-label {
 
 .calendar-notes-body {
   font-size: 12px;
+  display: grid;
+  gap: 6px;
 }
 
 .calendar-notes-empty {
@@ -606,8 +608,92 @@ kpi-label {
   background: #f3f4f6;
 }
 
+.calendar-notes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.calendar-note {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.calendar-note-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #4f46e5;
+}
+
+.calendar-note-text {
+  color: #111827;
+}
+
+.calendar-note-menu {
+  border: none;
+  background: none;
+  padding: 0 4px;
+  cursor: pointer;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.calendar-note-menu:hover {
+  color: #4b5563;
+}
+
+.calendar-note-menu-popup {
+  position: absolute;
+  top: 100%;
+  right: 4px;
+  margin-top: 4px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+  padding: 2px 0;
+  font-size: 11px;
+  min-width: 120px;
+  z-index: 30;
+  opacity: 0;
+  transform: translateY(-2px);
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.calendar-note-menu-popup.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.calendar-note-menu-item {
+  width: 100%;
+  padding: 4px 8px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.calendar-note-menu-item:hover {
+  background: #eff6ff;
+}
+
 .calendar-day-has-note {
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.35);
   position: relative;
 }
 
@@ -621,6 +707,8 @@ kpi-label {
   border-radius: 999px;
   background: #4f46e5;
 }
+
+/* Список заметок и контекстное меню выводятся в нижнем блоке, не в ячейке календаря */
 
 .alerts-list {
   list-style: none;
