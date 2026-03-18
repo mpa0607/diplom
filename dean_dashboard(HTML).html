@@ -337,7 +337,138 @@
         </table>
       </div>
 
-      <!-- Блок "Быстрый доступ" перенесён в шапку страницы -->
+      <div class="panel panel-accent calendar-panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Календарь событий факультета</div>
+            <div class="panel-subtitle">Ближайшие мероприятия и дедлайны</div>
+          </div>
+        </div>
+
+        <div class="calendar-header">
+          <div class="calendar-month">Март 2026</div>
+        </div>
+
+        <div class="calendar-grid">
+          <div class="calendar-day calendar-day-name">Пн</div>
+          <div class="calendar-day calendar-day-name">Вт</div>
+          <div class="calendar-day calendar-day-name">Ср</div>
+          <div class="calendar-day calendar-day-name">Чт</div>
+          <div class="calendar-day calendar-day-name">Пт</div>
+          <div class="calendar-day calendar-day-name">Сб</div>
+          <div class="calendar-day calendar-day-name">Вс</div>
+
+          <div class="calendar-day calendar-day-empty"></div>
+          <div class="calendar-day calendar-day-empty"></div>
+          <div class="calendar-day calendar-day-session" data-date="2026-03-03">
+            <span class="calendar-date">3</span>
+            <span class="calendar-mark calendar-dot-session"></span>
+          </div>
+          <div class="calendar-day calendar-day-session" data-date="2026-03-04">
+            <span class="calendar-date">4</span>
+          </div>
+          <div class="calendar-day calendar-day-session" data-date="2026-03-05">
+            <span class="calendar-date">5</span>
+            <span class="calendar-mark calendar-dot-meeting"></span>
+          </div>
+          <div class="calendar-day calendar-day-session" data-date="2026-03-06">
+            <span class="calendar-date">6</span>
+          </div>
+          <div class="calendar-day calendar-day-session" data-date="2026-03-07">
+            <span class="calendar-date">7</span>
+          </div>
+
+          <div class="calendar-day" data-date="2026-03-10">
+            <span class="calendar-date">10</span>
+          </div>
+          <div class="calendar-day" data-date="2026-03-11">
+            <span class="calendar-date">11</span>
+          </div>
+          <div class="calendar-day" data-date="2026-03-12">
+            <span class="calendar-date">12</span>
+          </div>
+          <div class="calendar-day" data-date="2026-03-13">
+            <span class="calendar-date">13</span>
+          </div>
+          <div class="calendar-day calendar-day-deadline" data-date="2026-03-14">
+            <span class="calendar-date">14</span>
+            <span class="calendar-mark calendar-dot-deadline"></span>
+          </div>
+          <div class="calendar-day" data-date="2026-03-15">
+            <span class="calendar-date">15</span>
+          </div>
+          <div class="calendar-day" data-date="2026-03-16">
+            <span class="calendar-date">16</span>
+          </div>
+
+          <div class="calendar-day" data-date="2026-03-17">
+            <span class="calendar-date">17</span>
+          </div>
+          <div class="calendar-day calendar-day-meeting" data-date="2026-03-18">
+            <span class="calendar-date">18</span>
+            <span class="calendar-mark calendar-dot-meeting"></span>
+          </div>
+          <div class="calendar-day" data-date="2026-03-19">
+            <span class="calendar-date">19</span>
+          </div>
+          <div class="calendar-day" data-date="2026-03-20">
+            <span class="calendar-date">20</span>
+          </div>
+          <div class="calendar-day" data-date="2026-03-21">
+            <span class="calendar-date">21</span>
+          </div>
+          <div class="calendar-day" data-date="2026-03-22">
+            <span class="calendar-date">22</span>
+          </div>
+          <div class="calendar-day" data-date="2026-03-23">
+            <span class="calendar-date">23</span>
+          </div>
+        </div>
+
+        <ul class="calendar-events">
+          <li>
+            <span class="calendar-dot calendar-dot-session"></span>
+            <span class="event-date">3–7 марта</span>
+            <span class="event-text">Экзаменационная сессия (2 курс, БИСТ)</span>
+          </li>
+          <li>
+            <span class="calendar-dot calendar-dot-meeting"></span>
+            <span class="event-date">5 марта</span>
+            <span class="event-text">Заседание учёного совета факультета</span>
+          </li>
+          <li>
+            <span class="calendar-dot calendar-dot-deadline"></span>
+            <span class="event-date">14 марта</span>
+            <span class="event-text">Дедлайн загрузки отчётов по успеваемости</span>
+          </li>
+          <li>
+            <span class="calendar-dot calendar-dot-meeting"></span>
+            <span class="event-date">18 марта</span>
+            <span class="event-text">Совещание с зав. кафедрами по итогам сессии</span>
+          </li>
+        </ul>
+
+        <div class="calendar-notes">
+          <div class="calendar-notes-header">Заметки по дате</div>
+          <div class="calendar-notes-body">
+            <div class="calendar-notes-empty">
+              Выберите дату в календаре, чтобы добавить заметку.
+            </div>
+            <form class="calendar-notes-form" hidden>
+              <div class="calendar-notes-date"></div>
+              <textarea
+                class="calendar-notes-text"
+                rows="3"
+                placeholder="Введите заметку для выбранной даты"
+              ></textarea>
+              <div class="calendar-notes-actions">
+                <button type="button" class="calendar-notes-save">Сохранить</button>
+                <button type="button" class="calendar-notes-cancel">Отмена</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
