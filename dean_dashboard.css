@@ -21,6 +21,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   box-shadow: 0 2px 12px rgba(15, 23, 42, 0.6);
   border-bottom: 1px solid #1e3a8a;
 }
@@ -42,6 +43,7 @@ header .role {
   align-items: center;
   font-size: 14px;
   margin-left: auto;
+  flex: 0 0 auto;
 }
 
 .filters label {
@@ -59,63 +61,37 @@ header .role {
   color: #111827;
 }
 
-.quick-access {
-  position: relative;
+.header-links {
+  display: flex;
+  gap: 8px;
   margin-left: 24px;
+  flex: 1 1 auto;
+  min-width: 0;
+  align-self: flex-end;
+  margin-bottom: 1px;
 }
 
-.quick-access-toggle {
-  padding: 6px 12px;
+.header-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid rgba(148, 163, 184, 0.7);
   background: rgba(15, 23, 42, 0.7);
   color: #e5e7eb;
-  font-size: 13px;
-  cursor: pointer;
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.quick-access-toggle:hover {
+.header-link:hover {
   background: rgba(15, 23, 42, 0.9);
   border-color: #e5e7eb;
-}
-
-.quick-access-menu {
-  position: absolute;
-  right: 0;
-  top: 100%;
-  width: 320px;
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #cbd5e1;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.25);
-  padding: 8px 0;
-  opacity: 0;
-  transform: translateY(4px);
-  pointer-events: none;
-  transition: opacity 0.18s ease, transform 0.18s ease;
-  z-index: 20;
-}
-
-.quick-access:hover .quick-access-menu,
-.quick-access:focus-within .quick-access-menu {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.quick-access-item {
-  width: 100%;
-  padding: 8px 14px;
-  border: none;
-  background: transparent;
-  text-align: left;
-  font-size: 13px;
-  color: #111827;
-  cursor: pointer;
-}
-
-.quick-access-item:hover {
-  background: #eff6ff;
 }
 
 main {

@@ -1,0 +1,365 @@
+erDiagram
+    users {
+      uuid id PK
+      string email UK
+      string password_hash
+      bool is_active
+      datetime last_login_at
+    }
+    persons {
+      uuid id PK
+      uuid user_id FK
+      string last_name
+      string first_name
+      string middle_name
+      date birth_date
+      string phone
+      string status
+    }
+    roles {
+      uuid id PK
+      string code UK
+      string name
+      string description
+    }
+    role_assignments {
+      uuid id PK
+      uuid person_id FK
+      uuid role_id FK
+      uuid assigned_by FK
+      date starts_at
+      date ends_at
+      bool is_primary
+    }
+    role_hierarchy {
+      uuid id PK
+      uuid parent_role_id FK
+      uuid child_role_id FK
+      bool can_assign
+      bool can_view_docs
+      bool can_create_tasks
+    }
+    directions {
+      uuid id PK
+      string code UK
+      string name
+      string degree_level
+      int study_years
+    }
+    education_programs {
+      uuid id PK
+      uuid direction_id FK
+      string code UK
+      string name
+      int start_year
+      int end_year
+      bool is_active
+    }
+    academic_years {
+      uuid id PK
+      string label UK
+      int year_start
+      int year_end
+      bool is_current
+    }
+    semesters {
+      uuid id PK
+      uuid academic_year_id FK
+      int term_no
+      string name
+      date starts_at
+      date ends_at
+    }
+    departments {
+      uuid id PK
+      string code UK
+      string name
+      uuid head_person_id FK
+    }
+    groups {
+      uuid id PK
+      string code UK
+      uuid education_program_id FK
+      int course_no
+      int intake_year
+      uuid curator_person_id FK
+      bool is_active
+    }
+    students {
+      uuid id PK
+      uuid person_id FK
+      string student_code UK
+      string record_book_no UK
+      uuid group_id FK
+      string status
+    }
+    teachers {
+      uuid id PK
+      uuid person_id FK
+      uuid department_id FK
+      string position
+      decimal rate
+      bool is_active
+    }
+    curriculums {
+      uuid id PK
+      uuid education_program_id FK
+      string version
+      date approved_at
+      bool is_active
+    }
+    disciplines {
+      uuid id PK
+      string code UK
+      string name
+      uuid department_id FK
+      string control_type
+      int hours_total
+    }
+    discipline_programs {
+      uuid id PK
+      uuid discipline_id FK
+      uuid education_program_id FK
+      string version
+      date approved_at
+      string file_url
+    }
+    curriculum_items {
+      uuid id PK
+      uuid curriculum_id FK
+      uuid discipline_id FK
+      int semester_no
+      int hours_lecture
+      int hours_practice
+      int hours_lab
+      int hours_selfstudy
+      bool has_exam
+      bool has_credit
+    }
+    teaching_assignments {
+      uuid id PK
+      uuid teacher_id FK
+      uuid group_id FK
+      uuid discipline_id FK
+      uuid semester_id FK
+      string role_in_course
+      int hours_assigned
+    }
+    grade_records {
+      uuid id PK
+      uuid student_id FK
+      uuid discipline_id FK
+      uuid semester_id FK
+      decimal grade_value
+      string grade_text
+      bool is_passed
+      int attempt_no
+    }
+    academic_debts {
+      uuid id PK
+      uuid student_id FK
+      uuid discipline_id FK
+      uuid semester_id FK
+      string debt_type
+      date opened_at
+      date closed_at
+      string status
+    }
+    student_risk_scores {
+      uuid id PK
+      uuid student_id FK
+      uuid semester_id FK
+      int risk_level
+      decimal risk_score
+      json factors_json
+      datetime calculated_at
+    }
+    group_metrics {
+      uuid id PK
+      uuid group_id FK
+      uuid semester_id FK
+      decimal avg_grade
+      decimal debt_rate_pct
+      decimal expulsion_rate_pct
+      datetime calculated_at
+    }
+    enrollment_movements {
+      uuid id PK
+      uuid student_id FK
+      string movement_type
+      date movement_date
+      string order_no
+      string reason
+      uuid direction_id FK
+    }
+    kpi_definitions {
+      uuid id PK
+      string code UK
+      string name
+      string unit
+      bool is_higher_better
+    }
+    kpi_targets {
+      uuid id PK
+      uuid kpi_id FK
+      uuid academic_year_id FK
+      uuid semester_id FK
+      uuid direction_id FK
+      decimal target_value
+      uuid owner_role_id FK
+    }
+    kpi_values {
+      uuid id PK
+      uuid kpi_id FK
+      uuid academic_year_id FK
+      uuid semester_id FK
+      uuid direction_id FK
+      uuid group_id FK
+      decimal fact_value
+      string status
+      datetime calculated_at
+    }
+    risk_alerts {
+      uuid id PK
+      string alert_type
+      string severity
+      string title
+      string description
+      uuid direction_id FK
+      uuid group_id FK
+      uuid discipline_id FK
+      uuid semester_id FK
+      bool is_resolved
+      datetime created_at
+    }
+    calendar_events {
+      uuid id PK
+      string title
+      string event_type
+      datetime starts_at
+      datetime ends_at
+      uuid direction_id FK
+      uuid group_id FK
+      uuid created_by FK
+    }
+    calendar_notes {
+      uuid id PK
+      date note_date
+      uuid author_person_id FK
+      string text
+      bool is_private
+      datetime created_at
+      datetime updated_at
+    }
+    documents {
+      uuid id PK
+      string doc_type
+      string title
+      string file_url
+      string version
+      uuid owner_role_id FK
+      uuid signed_by_person_id FK
+      string status
+    }
+    document_access_rules {
+      uuid id PK
+      uuid document_id FK
+      uuid role_id FK
+      bool can_read
+      bool can_edit
+      bool can_sign
+    }
+    notifications {
+      uuid id PK
+      uuid recipient_person_id FK
+      string type
+      string title
+      string body
+      bool is_read
+      datetime created_at
+      datetime read_at
+    }
+    audit_log {
+      uuid id PK
+      uuid actor_person_id FK
+      string action
+      string entity_name
+      uuid entity_id
+      json old_value_json
+      json new_value_json
+      string source
+      datetime created_at
+    }
+
+    users ||--o| persons : has_account
+    persons ||--o{ role_assignments : gets
+    roles ||--o{ role_assignments : assigned
+    roles ||--o{ role_hierarchy : parent
+    roles ||--o{ role_hierarchy : child
+
+    directions ||--o{ education_programs : contains
+    education_programs ||--o{ groups : has
+    education_programs ||--o{ curriculums : has
+    education_programs ||--o{ discipline_programs : links
+    academic_years ||--o{ semesters : has
+
+    persons ||--o| students : is_student
+    persons ||--o| teachers : is_teacher
+    persons ||--o{ calendar_events : creates
+    persons ||--o{ calendar_notes : writes
+    persons ||--o{ notifications : receives
+    persons ||--o{ audit_log : performs
+
+    departments ||--o{ teachers : employs
+    departments ||--o{ disciplines : owns
+    persons ||--o{ departments : heads
+
+    groups ||--o{ students : includes
+    persons ||--o{ groups : curates
+
+    curriculums ||--o{ curriculum_items : contains
+    disciplines ||--o{ curriculum_items : part_of
+    disciplines ||--o{ discipline_programs : specified_by
+
+    teachers ||--o{ teaching_assignments : teaches
+    groups ||--o{ teaching_assignments : for_group
+    disciplines ||--o{ teaching_assignments : for_discipline
+    semesters ||--o{ teaching_assignments : in_semester
+
+    students ||--o{ grade_records : has
+    students ||--o{ academic_debts : has
+    students ||--o{ student_risk_scores : has
+    students ||--o{ enrollment_movements : has
+    disciplines ||--o{ grade_records : evaluates
+    disciplines ||--o{ academic_debts : debt_in
+    semesters ||--o{ grade_records : in
+    semesters ||--o{ academic_debts : in
+    semesters ||--o{ student_risk_scores : in
+
+    groups ||--o{ group_metrics : has
+    semesters ||--o{ group_metrics : in
+    directions ||--o{ enrollment_movements : context
+
+    kpi_definitions ||--o{ kpi_targets : target_for
+    kpi_definitions ||--o{ kpi_values : value_for
+    academic_years ||--o{ kpi_targets : year
+    academic_years ||--o{ kpi_values : year
+    semesters ||--o{ kpi_targets : semester
+    semesters ||--o{ kpi_values : semester
+    directions ||--o{ kpi_targets : direction
+    directions ||--o{ kpi_values : direction
+    groups ||--o{ kpi_values : group
+    roles ||--o{ kpi_targets : owner
+
+    directions ||--o{ risk_alerts : related
+    groups ||--o{ risk_alerts : related
+    disciplines ||--o{ risk_alerts : related
+    semesters ||--o{ risk_alerts : in
+
+    directions ||--o{ calendar_events : for
+    groups ||--o{ calendar_events : for
+
+    roles ||--o{ documents : owns
+    persons ||--o{ documents : signs
+    documents ||--o{ document_access_rules : has_rules
+    roles ||--o{ document_access_rules : can_access
