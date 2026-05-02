@@ -37,6 +37,19 @@ header .role {
   color: #9ca3af;
 }
 
+.drill-back-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+.drill-back-link:hover {
+  color: #e5e7eb;
+  text-decoration: underline;
+}
+
 .filters {
   display: flex;
   gap: 12px;
@@ -202,6 +215,17 @@ kpi-label {
   color: #4b5563;
 }
 
+.panel-accent .panel-subtitle .drill-link {
+  color: #1d4ed8;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.panel-accent .panel-subtitle .drill-link:hover {
+  color: #1e3a8a;
+}
+
 .panel-header {
   display: flex;
   justify-content: space-between;
@@ -262,6 +286,32 @@ kpi-label {
 
 .kpi-goal .goal-name {
   font-weight: 600;
+}
+
+.kpi-goal .drill-link {
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.kpi-goal .drill-link:hover {
+  color: #1e40af;
+}
+
+.table .drill-link {
+  color: #1d4ed8;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.table .drill-link:hover {
+  color: #1e3a8a;
+}
+
+.drill-link--inline {
+  margin-left: 6px;
+  white-space: nowrap;
 }
 
 .kpi-goal .goal-values {

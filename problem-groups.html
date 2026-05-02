@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Проблемные группы — Дашборд декана ФБИ</title>
+  <link rel="stylesheet" href="dean_dashboard.css" />
+</head>
+<body class="students-page">
+<div class="layout">
+
+  <header>
+    <div>
+      <div class="title">Информационная система ФБИ</div>
+      <div class="role">Реестр групп с повышенным риском</div>
+      <a href="dean_dashboard(HTML).html" class="drill-back-link">← К дашборду декана</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="section-title">Проблемные группы</div>
+
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">ТОП групп по рискам</div>
+            <div class="panel-subtitle">
+              <!-- Данные условные, демонстрационные; источник — БД (позже) -->
+              Низкий средний балл или высокая доля задолженностей.
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Группа</th>
+              <th>Направление</th>
+              <th>Курс</th>
+              <th>Средний балл</th>
+              <th>Задолженности</th>
+              <th>Статус</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><a href="group-detail.html?group=БПИ‑201" class="drill-link">БПИ‑201</a></td>
+              <td>БПИ</td>
+              <td>2</td>
+              <td>3.46</td>
+              <td>23%</td>
+              <td><span class="status-pill risk">Критично</span></td>
+            </tr>
+            <tr>
+              <td><a href="group-detail.html?group=БИСТ‑301" class="drill-link">БИСТ‑301</a></td>
+              <td>БИСТ</td>
+              <td>3</td>
+              <td>3.58</td>
+              <td>19%</td>
+              <td><span class="status-pill risk">Риск</span></td>
+            </tr>
+            <tr>
+              <td><a href="group-detail.html?group=БПИ‑401" class="drill-link">БПИ‑401</a></td>
+              <td>БПИ</td>
+              <td>4</td>
+              <td>3.62</td>
+              <td>17%</td>
+              <td><span class="status-pill risk">Риск</span></td>
+            </tr>
+            <tr>
+              <td><a href="group-detail.html?group=БИСТ‑102" class="drill-link">БИСТ‑102</a></td>
+              <td>БИСТ</td>
+              <td>1</td>
+              <td>3.71</td>
+              <td>15%</td>
+              <td><span class="status-pill">Под наблюдением</span></td>
+            </tr>
+            <tr>
+              <td><a href="group-detail.html?group=БПИ‑103" class="drill-link">БПИ‑103</a></td>
+              <td>БПИ</td>
+              <td>1</td>
+              <td>3.75</td>
+              <td>14%</td>
+              <td><span class="status-pill">Под наблюдением</span></td>
+            </tr>
+            <tr>
+              <td><a href="group-detail.html?group=БИСТ‑402" class="drill-link">БИСТ‑402</a></td>
+              <td>БИСТ</td>
+              <td>4</td>
+              <td>3.79</td>
+              <td>13%</td>
+              <td><span class="status-pill">Под наблюдением</span></td>
+            </tr>
+            <tr>
+              <td><a href="group-detail.html?group=БПИ‑301" class="drill-link">БПИ‑301</a></td>
+              <td>БПИ</td>
+              <td>3</td>
+              <td>3.81</td>
+              <td>12%</td>
+              <td><span class="status-pill">Под наблюдением</span></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Факультет бизнес‑информатики · Проблемные группы (демо‑данные)
+  </footer>
+
+</div>
+</body>
+</html>

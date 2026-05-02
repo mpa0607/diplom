@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Группа — Дашборд декана ФБИ</title>
+  <link rel="stylesheet" href="dean_dashboard.css" />
+</head>
+<body class="students-page">
+<div class="layout">
+
+  <header>
+    <div>
+      <div class="title">Информационная система ФБИ</div>
+      <div class="role" id="group-role">Студенты группы</div>
+      <a href="dean_dashboard(HTML).html" class="drill-back-link">← К дашборду декана</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="section-title">Состав группы</div>
+
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Успеваемость и риски</div>
+            <div class="panel-subtitle">
+              <!-- Данные условные, демонстрационные; источник — БД (позже) -->
+              Параметр <code>group</code> в URL, например <code>БПИ‑201</code>.
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>ФИО</th>
+              <th>Средний балл</th>
+              <th>Задолженности (шт.)</th>
+              <th>Риск</th>
+            </tr>
+            </thead>
+            <tbody id="group-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Факультет бизнес‑информатики · Группа (демо‑данные)
+  </footer>
+
+</div>
+
+<script>
+  function normalizeGroupName(g) {
+    return (g || "").replace(/[\u2011\u2010\u2013\u2014]/g, "-");
+  }
+
+  function riskPillClass(label) {
+    if (label.indexOf("Низкий") !== -1) return "status-pill ok";
+    if (label.indexOf("Высокий") !== -1 || label === "Риск") return "status-pill risk";
+    return "status-pill";
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var params = new URLSearchParams(window.location.search);
+    var raw = params.get("group") || "БПИ‑201";
+    var group = normalizeGroupName(raw);
+    var role = document.getElementById("group-role");
+    var tbody = document.getElementById("group-tbody");
+
+    if (role) role.textContent = "Группа " + raw;
+
+    var demo = {
+      "БПИ-201": [
+        ["Иванов Иван Иванович", "3.46", "3", "Высокий риск"],
+        ["Тихонов Сергей Николаевич", "3.12", "4", "Риск"],
+        ["Орлова Виктория Павловна", "4.02", "0", "Низкий риск"],
+      ],
+      "БИСТ-301": [
+        ["Петрова Анна Сергеевна", "3.82", "1", "Риск"],
+        ["Козлов Михаил Андреевич", "3.55", "2", "Риск"],
+      ],
+      "БПИ-401": [
+        ["Соколов Денис Олегович", "3.62", "2", "Риск"],
+        ["Мельникова Екатерина Игоревна", "3.85", "0", "Низкий риск"],
+      ],
+      "БИСТ-102": [
+        ["Фёдоров Артём Викторович", "3.71", "1", "Под наблюдением"],
+      ],
+      "БПИ-103": [
+        ["Волков Пётр Семёнович", "3.75", "1", "Под наблюдением"],
+      ],
+      "БИСТ-402": [
+        ["Николаева Дарья Сергеевна", "3.79", "2", "Риск"],
+        ["Белов Игорь Петрович", "3.91", "0", "Низкий риск"],
+      ],
+      "БПИ-301": [
+        ["Сидорова Мария Олеговна", "3.81", "1", "Под наблюдением"],
+      ],
+      default: [
+        ["Студент А. А.", "3.70", "1", "Под наблюдением"],
+        ["Студент Б. Б.", "4.10", "0", "Низкий риск"],
+      ],
+    };
+
+    var rows = demo[group] || demo.default;
+    rows.forEach(function (r) {
+      var tr = document.createElement("tr");
+      r.forEach(function (cell, idx) {
+        var td = document.createElement("td");
+        if (idx === 3) {
+          var pill = document.createElement("span");
+          pill.className = riskPillClass(cell);
+          pill.textContent = cell;
+          td.appendChild(pill);
+        } else {
+          td.textContent = cell;
+        }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  });
+</script>
+
+</body>
+</html>

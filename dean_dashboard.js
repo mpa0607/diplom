@@ -262,3 +262,46 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  var yearEl = document.getElementById("dean-filter-year");
+  if (!yearEl) return;
+
+  document.body.addEventListener("click", function (e) {
+    var a = e.target.closest("a[href]");
+    if (!a || a.target === "_blank" || a.download) return;
+    var href = a.getAttribute("href");
+    if (!href || href.charAt(0) === "#") return;
+
+    var url;
+    try {
+      url = new URL(href, window.location.href);
+    } catch (err) {
+      return;
+    }
+    if (url.origin !== window.location.origin) return;
+
+    var year = document.getElementById("dean-filter-year");
+    var semester = document.getElementById("dean-filter-semester");
+    var direction = document.getElementById("dean-filter-direction");
+    if (!year || !semester || !direction) return;
+
+    url.searchParams.set("year", year.value.trim());
+    url.searchParams.set("semester", semester.value.trim());
+    var dirVal = direction.value.trim();
+    if (dirVal && dirVal !== "all") {
+      url.searchParams.set("direction", dirVal);
+    }
+
+    var original = new URL(href, window.location.href);
+    var merged =
+      url.pathname !== original.pathname ||
+      url.search !== original.search ||
+      url.hash !== original.hash;
+
+    if (!merged) return;
+
+    e.preventDefault();
+    window.location.href = url.pathname + url.search + url.hash;
+  });
+});
+

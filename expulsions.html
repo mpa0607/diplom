@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Отчисления — Дашборд декана ФБИ</title>
+  <link rel="stylesheet" href="dean_dashboard.css" />
+</head>
+<body class="students-page">
+<div class="layout">
+
+  <header>
+    <div>
+      <div class="title">Информационная система ФБИ</div>
+      <div class="role">Журнал отчислений за учебный год</div>
+      <a href="dean_dashboard(HTML).html" class="drill-back-link">← К дашборду декана</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="section-title">Демо: приказы об отчислении</div>
+
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Отчисления</div>
+            <div class="panel-subtitle">
+              <!-- Данные условные, демонстрационные; источник — БД (позже) -->
+              Учебный год для примера: 2025/2026.
+            </div>
+          </div>
+        </div>
+
+        <div class="students-filters">
+          <label class="students-filters__field">
+            Направление
+            <select id="exp-filter-direction">
+              <option value="all" selected>Все</option>
+              <option value="БИСТ">БИСТ</option>
+              <option value="БПИ">БПИ</option>
+            </select>
+          </label>
+          <label class="students-filters__field">
+            Основание
+            <select id="exp-filter-reason">
+              <option value="all" selected>Все</option>
+              <option value="успеваемость">Низкая успеваемость</option>
+              <option value="личное">Заявление студента</option>
+              <option value="нарушение">Нарушение ПВДР</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table" id="expulsions-table">
+            <thead>
+            <tr>
+              <th>ФИО</th>
+              <th>Группа</th>
+              <th>Направление</th>
+              <th>Дата приказа</th>
+              <th>Номер приказа</th>
+              <th>Основание</th>
+              <th>Примечание</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-direction="БПИ" data-reason="успеваемость">
+              <td>Смирнов Павел Викторович</td>
+              <td>БПИ‑202</td>
+              <td>БПИ</td>
+              <td>12.11.2025</td>
+              <td>145‑ФБИ</td>
+              <td>Низкая успеваемость</td>
+              <td>Не ликвидированы задолженности за 2 семестра</td>
+            </tr>
+            <tr data-direction="БИСТ" data-reason="личное">
+              <td>Волкова Елена Сергеевна</td>
+              <td>БИСТ‑201</td>
+              <td>БИСТ</td>
+              <td>03.10.2025</td>
+              <td>112‑ФБИ</td>
+              <td>Заявление студента</td>
+              <td>Перевод в другой вуз</td>
+            </tr>
+            <tr data-direction="БПИ" data-reason="нарушение">
+              <td>Николаев Артём Игоревич</td>
+              <td>БПИ‑301</td>
+              <td>БПИ</td>
+              <td>22.09.2025</td>
+              <td>098‑ФБИ</td>
+              <td>Нарушение ПВДР</td>
+              <td>Повторное нарушение</td>
+            </tr>
+            <tr data-direction="БИСТ" data-reason="успеваемость">
+              <td>Фёдорова Инна Олеговна</td>
+              <td>БИСТ‑402</td>
+              <td>БИСТ</td>
+              <td>18.12.2025</td>
+              <td>167‑ФБИ</td>
+              <td>Низкая успеваемость</td>
+              <td>Академическая неуспеваемость</td>
+            </tr>
+            <tr data-direction="БПИ" data-reason="личное">
+              <td>Громов Даниил Павлович</td>
+              <td>БПИ‑103</td>
+              <td>БПИ</td>
+              <td>05.02.2026</td>
+              <td>201‑ФБИ</td>
+              <td>Заявление студента</td>
+              <td>Отчисление по собственному желанию</td>
+            </tr>
+            <tr data-direction="БПИ" data-reason="успеваемость">
+              <td>Тихонов Сергей Николаевич</td>
+              <td>БПИ‑201</td>
+              <td>БПИ</td>
+              <td>30.01.2026</td>
+              <td>188‑ФБИ</td>
+              <td>Низкая успеваемость</td>
+              <td>Совпадает с кейсом группы из «проблемных»</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Факультет бизнес‑информатики · Отчисления (демо‑данные)
+  </footer>
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var fd = document.getElementById("exp-filter-direction");
+    var fr = document.getElementById("exp-filter-reason");
+    var tbody = document.querySelector("#expulsions-table tbody");
+    if (!tbody) return;
+
+    function applyFilters() {
+      var d = fd ? fd.value : "all";
+      var r = fr ? fr.value : "all";
+      tbody.querySelectorAll("tr").forEach(function (row) {
+        var reasonText = row.cells[5] ? row.cells[5].textContent.toLowerCase() : "";
+        var matchReason =
+          r === "all" ||
+          (r === "успеваемость" && reasonText.indexOf("низкая") !== -1) ||
+          (r === "личное" && reasonText.indexOf("заявление") !== -1) ||
+          (r === "нарушение" && reasonText.indexOf("нарушение") !== -1);
+        var ok =
+          (d === "all" || row.getAttribute("data-direction") === d) && matchReason;
+        row.style.display = ok ? "" : "none";
+      });
+    }
+
+    if (fd) fd.addEventListener("change", applyFilters);
+    if (fr) fr.addEventListener("change", applyFilters);
+  });
+</script>
+
+</body>
+</html>

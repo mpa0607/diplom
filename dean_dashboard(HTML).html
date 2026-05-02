@@ -16,36 +16,36 @@
     </div>
 
     <nav class="header-links" aria-label="Разделы декана">
-      <a href="#" class="header-link" title="Образовательная программа">ОП</a>
-      <a href="#" class="header-link" title="Учебный план">УП</a>
-      <a href="#" class="header-link" title="База данных студентов (персональные данные, успеваемость, НИРС, участие в общественной деятельности)">БДС</a>
-      <a href="#" class="header-link" title="База данных преподавателя (персональные данные, учебная нагрузка, НИР, руководство НИРС и пр.)">БДП</a>
-      <a href="#" class="header-link" title="Расписание занятий">Расписание занятий</a>
-      <a href="#" class="header-link" title="Расписание экзаменов">Расписание экзаменов</a>
+      <a href="programs.html" class="header-link" title="Образовательная программа">ОП</a>
+      <a href="curricula.html" class="header-link" title="Учебный план">УП</a>
+      <a href="students.html" class="header-link" title="База данных студентов (персональные данные, успеваемость, НИРС, участие в общественной деятельности)">БДС</a>
+      <a href="teachers.html" class="header-link" title="База данных преподавателя (персональные данные, учебная нагрузка, НИР, руководство НИРС и пр.)">БДП</a>
+      <a href="schedule-classes.html" class="header-link" title="Расписание занятий">Расписание занятий</a>
+      <a href="schedule-exams.html" class="header-link" title="Расписание экзаменов">Расписание экзаменов</a>
     </nav>
 
     <div class="filters">
       <label>
         Год
-        <select>
-          <option>2024 / 2025</option>
-          <option selected>2025 / 2026</option>
-          <option>2026 / 2027</option>
+        <select id="dean-filter-year">
+          <option value="2024/2025">2024 / 2025</option>
+          <option value="2025/2026" selected>2025 / 2026</option>
+          <option value="2026/2027">2026 / 2027</option>
         </select>
       </label>
       <label>
         Семестр
-        <select>
-          <option>Осенний</option>
-          <option selected>Весенний</option>
+        <select id="dean-filter-semester">
+          <option value="Осенний">Осенний</option>
+          <option value="Весенний" selected>Весенний</option>
         </select>
       </label>
       <label>
         Направление
-        <select>
-          <option selected>Все направления</option>
-          <option>БИСТ — Инф. системы и технологии</option>
-          <option>БПИ — Прикладная информатика</option>
+        <select id="dean-filter-direction">
+          <option value="all" selected>Все направления</option>
+          <option value="БИСТ">БИСТ — Инф. системы и технологии</option>
+          <option value="БПИ">БПИ — Прикладная информатика</option>
         </select>
       </label>
     </div>
@@ -66,21 +66,27 @@
         </div>
 
         <div class="card">
-          <kpi-label>Средний балл (факультет)</kpi-label>
+          <kpi-label>
+            <a href="grades-by-subject.html" class="kpi-link">Средний балл (факультет)</a>
+          </kpi-label>
           <div class="kpi-value">4.12</div>
           <div class="kpi-sub">Цель ≥ 4.0</div>
           <div class="kpi-trend positive">▲ +0.06 за год</div>
         </div>
 
         <div class="card">
-          <kpi-label>Без задолженностей</kpi-label>
+          <kpi-label>
+            <a href="debts-and-retakes.html" class="kpi-link">Без задолженностей</a>
+          </kpi-label>
           <div class="kpi-value">87%</div>
           <div class="kpi-sub">Цель ≥ 85%</div>
           <div class="kpi-trend positive">▲ +3.2 п.п.</div>
         </div>
 
         <div class="card">
-          <kpi-label>Отчислений за год</kpi-label>
+          <kpi-label>
+            <a href="expulsions.html" class="kpi-link">Отчислений за год</a>
+          </kpi-label>
           <div class="kpi-value">3.8%</div>
           <div class="kpi-sub">Цель ≤ 5%</div>
           <div class="kpi-trend positive">▼ −0.9 п.п.</div>
@@ -97,7 +103,9 @@
         </div>
         <div class="kpi-goals">
           <div class="kpi-goal">
-            <div class="goal-name">Средний балл по факультету</div>
+            <div class="goal-name">
+              <a href="grades-by-subject.html" class="drill-link">Средний балл по факультету</a>
+            </div>
             <div class="goal-values">
               <span>Факт: <strong>4.12</strong></span>
               <span>Цель: 4.0</span>
@@ -108,7 +116,9 @@
             <div class="kpi-trend positive">Цель выполняется</div>
           </div>
           <div class="kpi-goal">
-            <div class="goal-name">Доля студентов без задолженностей</div>
+            <div class="goal-name">
+              <a href="debts-and-retakes.html" class="drill-link">Доля студентов без задолженностей</a>
+            </div>
             <div class="goal-values">
               <span>Факт: <strong>87%</strong></span>
               <span>Цель: 85%</span>
@@ -119,7 +129,9 @@
             <div class="kpi-trend positive">Цель выполняется</div>
           </div>
           <div class="kpi-goal">
-            <div class="goal-name">Уровень отчислений</div>
+            <div class="goal-name">
+              <a href="expulsions.html" class="drill-link">Уровень отчислений</a>
+            </div>
             <div class="goal-values">
               <span>Факт: <strong>3.8%</strong></span>
               <span>Цель: ≤ 3%</span>
@@ -153,14 +165,14 @@
             </thead>
             <tbody>
             <tr>
-              <td>БИСТ</td>
+              <td><a href="direction-detail.html?code=BIST" class="drill-link">БИСТ</a></td>
               <td>396</td>
               <td>4.18</td>
               <td><span class="status-pill ok">89%</span></td>
               <td>3.1%</td>
             </tr>
             <tr>
-              <td>БПИ</td>
+              <td><a href="direction-detail.html?code=BPI" class="drill-link">БПИ</a></td>
               <td>446</td>
               <td>4.07</td>
               <td><span class="status-pill risk">84%</span></td>
@@ -201,7 +213,10 @@
         <div class="panel-header">
           <div>
             <div class="panel-title">ТОП‑5 проблемных групп</div>
-            <div class="panel-subtitle">Низкий средний балл или высокий уровень задолженностей</div>
+            <div class="panel-subtitle">
+              Низкий средний балл или высокий уровень задолженностей.
+              <a href="problem-groups.html" class="drill-link drill-link--inline">Полный реестр</a>
+            </div>
           </div>
         </div>
         <div class="table-wrapper">
@@ -218,7 +233,7 @@
           </thead>
           <tbody>
           <tr>
-            <td>БПИ‑201</td>
+            <td><a href="group-detail.html?group=БПИ‑201" class="drill-link">БПИ‑201</a></td>
             <td>БПИ</td>
             <td>2</td>
             <td>3.46</td>
@@ -226,7 +241,7 @@
             <td><span class="status-pill risk">Критично</span></td>
           </tr>
           <tr>
-            <td>БИСТ‑301</td>
+            <td><a href="group-detail.html?group=БИСТ‑301" class="drill-link">БИСТ‑301</a></td>
             <td>БИСТ</td>
             <td>3</td>
             <td>3.58</td>
@@ -234,7 +249,7 @@
             <td><span class="status-pill risk">Риск</span></td>
           </tr>
           <tr>
-            <td>БПИ‑401</td>
+            <td><a href="group-detail.html?group=БПИ‑401" class="drill-link">БПИ‑401</a></td>
             <td>БПИ</td>
             <td>4</td>
             <td>3.62</td>
@@ -242,7 +257,7 @@
             <td><span class="status-pill risk">Риск</span></td>
           </tr>
           <tr>
-            <td>БИСТ‑102</td>
+            <td><a href="group-detail.html?group=БИСТ‑102" class="drill-link">БИСТ‑102</a></td>
             <td>БИСТ</td>
             <td>1</td>
             <td>3.71</td>
@@ -250,7 +265,7 @@
             <td><span class="status-pill">Под наблюдением</span></td>
           </tr>
           <tr>
-            <td>БПИ‑103</td>
+            <td><a href="group-detail.html?group=БПИ‑103" class="drill-link">БПИ‑103</a></td>
             <td>БПИ</td>
             <td>1</td>
             <td>3.75</td>
@@ -268,7 +283,10 @@
         <div class="panel-header">
           <div>
             <div class="panel-title">Сигналы и риски</div>
-            <div class="panel-subtitle">Автоматические уведомления по ключевым событиям</div>
+            <div class="panel-subtitle">
+              Автоматические уведомления по ключевым событиям.
+              <a href="alerts-registry.html" class="drill-link drill-link--inline">Реестр</a>
+            </div>
           </div>
         </div>
         <ul class="alerts-list">
@@ -297,7 +315,10 @@
         <div class="panel-header">
           <div>
             <div class="panel-title">Контингент и движение</div>
-            <div class="panel-subtitle">Зачисления, отчисления, академические отпуска</div>
+            <div class="panel-subtitle">
+              Зачисления, отчисления, академические отпуска.
+              <a href="contingent-movement.html" class="drill-link drill-link--inline">Детализация</a>
+            </div>
           </div>
         </div>
         <div class="table-wrapper">

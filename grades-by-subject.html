@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Успеваемость по предметам — Дашборд декана ФБИ</title>
+  <link rel="stylesheet" href="dean_dashboard.css" />
+</head>
+<body class="students-page">
+<div class="layout">
+
+  <header>
+    <div>
+      <div class="title">Информационная система ФБИ</div>
+      <div class="role">Успеваемость по дисциплинам (детализация)</div>
+      <a href="dean_dashboard(HTML).html" class="drill-back-link">← К дашборду декана</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="section-title">Демо: оценки студентов по предметам</div>
+
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Таблица успеваемости</div>
+            <div class="panel-subtitle">
+              <!-- Данные условные, демонстрационные; источник — БД (позже) -->
+              Фильтры ниже применяются к строкам таблицы (клиентская демонстрация).
+            </div>
+          </div>
+        </div>
+
+        <div class="students-filters">
+          <label class="students-filters__field">
+            Направление
+            <select id="grades-filter-direction">
+              <option value="all" selected>Все</option>
+              <option value="БИСТ">БИСТ</option>
+              <option value="БПИ">БПИ</option>
+            </select>
+          </label>
+          <label class="students-filters__field">
+            Группа
+            <select id="grades-filter-group">
+              <option value="all" selected>Все группы</option>
+              <option value="БПИ‑201">БПИ‑201</option>
+              <option value="БИСТ‑301">БИСТ‑301</option>
+              <option value="БПИ‑401">БПИ‑401</option>
+              <option value="БИСТ‑102">БИСТ‑102</option>
+              <option value="БПИ‑103">БПИ‑103</option>
+            </select>
+          </label>
+          <label class="students-filters__field">
+            Семестр
+            <select id="grades-filter-semester">
+              <option value="all" selected>Все</option>
+              <option value="4">4</option>
+              <option value="6">6</option>
+              <option value="8">8</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table" id="grades-table">
+            <thead>
+            <tr>
+              <th>ФИО</th>
+              <th>Группа</th>
+              <th>Направление</th>
+              <th>Дисциплина</th>
+              <th>Семестр</th>
+              <th>Оценка</th>
+              <th>Ср. балл (студент, семестр)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-direction="БПИ" data-group="БПИ‑201" data-semester="4">
+              <td>Иванов Иван Иванович</td>
+              <td>БПИ‑201</td>
+              <td>БПИ</td>
+              <td>Базы данных</td>
+              <td>4</td>
+              <td>3</td>
+              <td>3.46</td>
+            </tr>
+            <tr data-direction="БПИ" data-group="БПИ‑201" data-semester="4">
+              <td>Иванов Иван Иванович</td>
+              <td>БПИ‑201</td>
+              <td>БПИ</td>
+              <td>Программирование</td>
+              <td>4</td>
+              <td>4</td>
+              <td>3.46</td>
+            </tr>
+            <tr data-direction="БИСТ" data-group="БИСТ‑301" data-semester="6">
+              <td>Петрова Анна Сергеевна</td>
+              <td>БИСТ‑301</td>
+              <td>БИСТ</td>
+              <td>Системный анализ</td>
+              <td>6</td>
+              <td>4</td>
+              <td>3.82</td>
+            </tr>
+            <tr data-direction="БПИ" data-group="БПИ‑401" data-semester="8">
+              <td>Сидоров Дмитрий Олегович</td>
+              <td>БПИ‑401</td>
+              <td>БПИ</td>
+              <td>Управление проектами</td>
+              <td>8</td>
+              <td>3</td>
+              <td>3.62</td>
+            </tr>
+            <tr data-direction="БИСТ" data-group="БИСТ‑102" data-semester="4">
+              <td>Кузнецова Мария Игоревна</td>
+              <td>БИСТ‑102</td>
+              <td>БИСТ</td>
+              <td>Информатика</td>
+              <td>4</td>
+              <td>5</td>
+              <td>4.21</td>
+            </tr>
+            <tr data-direction="БПИ" data-group="БПИ‑103" data-semester="4">
+              <td>Алексеев Роман Петрович</td>
+              <td>БПИ‑103</td>
+              <td>БПИ</td>
+              <td>Математический анализ</td>
+              <td>4</td>
+              <td>4</td>
+              <td>3.75</td>
+            </tr>
+            <tr data-direction="БИСТ" data-group="БИСТ‑301" data-semester="6">
+              <td>Петрова Анна Сергеевна</td>
+              <td>БИСТ‑301</td>
+              <td>БИСТ</td>
+              <td>Базы данных</td>
+              <td>6</td>
+              <td>5</td>
+              <td>3.82</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Факультет бизнес‑информатики · Успеваемость (демо‑данные)
+  </footer>
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var fd = document.getElementById("grades-filter-direction");
+    var fg = document.getElementById("grades-filter-group");
+    var fs = document.getElementById("grades-filter-semester");
+    var tbody = document.querySelector("#grades-table tbody");
+    if (!tbody) return;
+
+    function applyFilters() {
+      var d = fd ? fd.value : "all";
+      var g = fg ? fg.value : "all";
+      var s = fs ? fs.value : "all";
+      tbody.querySelectorAll("tr").forEach(function (row) {
+        var ok =
+          (d === "all" || row.getAttribute("data-direction") === d) &&
+          (g === "all" || row.getAttribute("data-group") === g) &&
+          (s === "all" || row.getAttribute("data-semester") === s);
+        row.style.display = ok ? "" : "none";
+      });
+    }
+
+    [fd, fg, fs].forEach(function (el) {
+      if (el) el.addEventListener("change", applyFilters);
+    });
+  });
+</script>
+
+</body>
+</html>

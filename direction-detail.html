@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Направление — Дашборд декана ФБИ</title>
+  <link rel="stylesheet" href="dean_dashboard.css" />
+</head>
+<body class="students-page">
+<div class="layout">
+
+  <header>
+    <div>
+      <div class="title">Информационная система ФБИ</div>
+      <div class="role" id="direction-role">Направление подготовки</div>
+      <a href="dean_dashboard(HTML).html" class="drill-back-link">← К дашборду декана</a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="section-title">Группы и показатели</div>
+
+      <div class="panel panel-accent">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Сводка по группам</div>
+            <div class="panel-subtitle">
+              <!-- Данные условные, демонстрационные; источник — БД (позже) -->
+              Параметр <code>code</code> в URL: BIST или BPI.
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Группа</th>
+              <th>Курс</th>
+              <th>Студентов</th>
+              <th>Средний балл</th>
+              <th>% без долгов</th>
+              <th>% отчислений (год)</th>
+            </tr>
+            </thead>
+            <tbody id="direction-tbody">
+            <!-- строки подставляются скриптом по code -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Факультет бизнес‑информатики · Направление (демо‑данные)
+  </footer>
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var params = new URLSearchParams(window.location.search);
+    var code = (params.get("code") || "BIST").toUpperCase();
+    var role = document.getElementById("direction-role");
+    var tbody = document.getElementById("direction-tbody");
+
+    var data = {
+      BIST: {
+        title: "БИСТ — информационные системы и технологии",
+        rows: [
+          ["БИСТ‑102", "1", "28", "3.91", "92%", "0%"],
+          ["БИСТ‑301", "3", "26", "3.82", "88%", "2.1%"],
+          ["БИСТ‑402", "4", "22", "3.95", "90%", "1.5%"],
+        ],
+      },
+      BPI: {
+        title: "БПИ — прикладная информатика",
+        rows: [
+          ["БПИ‑103", "1", "30", "3.88", "86%", "1.2%"],
+          ["БПИ‑201", "2", "27", "3.46", "77%", "4.0%"],
+          ["БПИ‑301", "3", "25", "3.71", "82%", "3.3%"],
+          ["БПИ‑401", "4", "24", "3.62", "79%", "3.8%"],
+        ],
+      },
+    };
+
+    var block = data[code] || data.BIST;
+    if (role) role.textContent = block.title;
+
+    if (tbody) {
+      block.rows.forEach(function (cells) {
+        var tr = document.createElement("tr");
+        cells.forEach(function (text, i) {
+          var td = document.createElement("td");
+          if (i === 0) {
+            var a = document.createElement("a");
+            a.href = "group-detail.html?group=" + encodeURIComponent(text);
+            a.className = "drill-link";
+            a.textContent = text;
+            td.appendChild(a);
+          } else {
+            td.textContent = text;
+          }
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
