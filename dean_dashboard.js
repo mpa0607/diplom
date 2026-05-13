@@ -305,3 +305,88 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  var yearSel = document.getElementById("dean-filter-year");
+  var outYear = document.getElementById("assistant-ctx-year");
+  if (!yearSel || !outYear) return;
+
+  function syncAssistantPageContext() {
+    var semSel = document.getElementById("dean-filter-semester");
+    var dirSel = document.getElementById("dean-filter-direction");
+    var outSem = document.getElementById("assistant-ctx-semester");
+    var outDir = document.getElementById("assistant-ctx-direction");
+
+    var yOpt = yearSel.options[yearSel.selectedIndex];
+    outYear.textContent = yOpt ? yOpt.textContent.trim() : "";
+
+    if (semSel && outSem) {
+      var sOpt = semSel.options[semSel.selectedIndex];
+      outSem.textContent = sOpt ? sOpt.textContent.trim() : "";
+    }
+
+    if (dirSel && outDir) {
+      var dOpt = dirSel.options[dirSel.selectedIndex];
+      outDir.textContent = dOpt ? dOpt.textContent.trim() : "";
+    }
+  }
+
+  syncAssistantPageContext();
+
+  ["dean-filter-year", "dean-filter-semester", "dean-filter-direction"].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("change", syncAssistantPageContext);
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var dock = document.getElementById("dean-assistant-dock");
+  var fab = document.getElementById("dean-assistant-fab");
+  var panel = document.getElementById("dean-assistant-popover");
+  var backdrop = document.getElementById("dean-assistant-backdrop");
+  var closeBtn = document.getElementById("dean-assistant-close");
+  if (!dock || !fab || !panel || !backdrop) return;
+
+  function setAssistantOpen(open) {
+    panel.hidden = !open;
+    backdrop.hidden = !open;
+    fab.setAttribute("aria-expanded", open ? "true" : "false");
+    fab.title = open ? "Закрыть панель ассистента" : "Открыть ассистента декана";
+    dock.classList.toggle("is-open", open);
+    backdrop.setAttribute("aria-hidden", open ? "false" : "true");
+
+    if (open) {
+      var input = document.getElementById("dean-assistant-input");
+      if (input) {
+        window.setTimeout(function () {
+          input.focus();
+        }, 0);
+      }
+    }
+  }
+
+  fab.addEventListener("click", function () {
+    setAssistantOpen(panel.hidden);
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function () {
+      setAssistantOpen(false);
+      fab.focus();
+    });
+  }
+
+  backdrop.addEventListener("click", function () {
+    setAssistantOpen(false);
+    fab.focus();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && dock.classList.contains("is-open")) {
+      setAssistantOpen(false);
+      fab.focus();
+    }
+  });
+});
+
