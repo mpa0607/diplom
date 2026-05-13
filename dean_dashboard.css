@@ -1,8 +1,69 @@
+:root {
+  --color-page: #f3f4f6;
+  --color-text: #111827;
+  --color-header-bg: #0f172a;
+  --color-header-text: #e5e7eb;
+  --color-focus-ring: #38bdf8;
+  --focus-offset: 2px;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f3f4f6;
-  color: #111827;
+  background: var(--color-page);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-to-main:focus,
+.skip-to-main:focus-visible {
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  z-index: 1000;
+  width: auto;
+  height: auto;
+  padding: 10px 14px;
+  overflow: visible;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.35);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+.calendar-day:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collapsible {
+    transition: none;
+  }
+
+  .calendar-note-menu-popup {
+    transition: none;
+  }
 }
 
 .layout {
@@ -15,8 +76,8 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: #0f172a;
-  color: #e5e7eb;
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
   padding: 12px 32px;
   display: flex;
   justify-content: space-between;
@@ -30,6 +91,7 @@ header .title {
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.02em;
+  margin: 0;
 }
 
 header .role {
@@ -338,6 +400,7 @@ kpi-label {
   width: 100%;
   border-collapse: collapse;
   font-size: 12px;
+  font-variant-numeric: tabular-nums;
 }
 
 .table th,
@@ -416,10 +479,6 @@ kpi-label {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.28s ease;
-}
-
-.collapsible-open {
-  /* max-height управляется скриптом, здесь только флаг-состояние */
 }
 
 .right-column {
@@ -853,10 +912,6 @@ footer {
     font-size: 12px;
   }
 
-  .quick-access {
-    margin-left: 0;
-  }
-
   main {
     grid-template-columns: 1fr;
     padding: 16px 12px 20px;
@@ -890,6 +945,17 @@ footer {
 
   .students-page main {
     padding: 16px 12px 20px;
+  }
+
+  .filters select,
+  .header-link {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  .students-filters__field select {
+    min-height: 44px;
+    touch-action: manipulation;
   }
 }
 
